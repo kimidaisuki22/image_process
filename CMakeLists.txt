@@ -9,19 +9,24 @@ if(BUILD_TESTING)
   list(APPEND VCPKG_MANIFEST_FEATURES "test")
 endif()
 
-project(main VERSION 0.0.1)
+project(image_process VERSION 0.0.1)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(main src/main.cpp)
+add_library(image_process )
+
+target_sources(image_process PRIVATE
+ src/loader.cpp
+ src/bitmaps/bitmap_flat.cpp
+)
 
 find_package(fmt CONFIG REQUIRED)
-target_link_libraries(main PRIVATE fmt::fmt)
+target_link_libraries(image_process PRIVATE fmt::fmt)
 find_package(spdlog CONFIG REQUIRED)
-target_link_libraries(main PRIVATE spdlog::spdlog)
+target_link_libraries(image_process PRIVATE spdlog::spdlog)
 
-target_include_directories(main PUBLIC
+target_include_directories(image_process PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
 )
@@ -33,8 +38,7 @@ if(WITH_BENCHMARK)
   add_subdirectory(benchmark)
 endif()
 
-install(TARGETS main DESTINATION bin)
-# install(TARGETS $<TARGET_RUNTIME_DLLS:main> DESTINATION bin)
+install(TARGETS image_process DESTINATION lib)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
