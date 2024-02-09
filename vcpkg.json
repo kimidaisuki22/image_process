@@ -3,8 +3,6 @@
     "name": "image-process",
     "version": "0.0.1",
     "dependencies": [
-        "fmt",
-        "spdlog",
         "stb",
         "libwebp"
     ],

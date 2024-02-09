@@ -28,10 +28,6 @@ target_sources(image_process PRIVATE
  src/exporters/exporter_factory.cpp
 )
 
-find_package(fmt CONFIG REQUIRED)
-target_link_libraries(image_process PRIVATE fmt::fmt)
-find_package(spdlog CONFIG REQUIRED)
-target_link_libraries(image_process PRIVATE spdlog::spdlog)
 
 find_package(Stb REQUIRED)
 target_include_directories(image_process PRIVATE ${Stb_INCLUDE_DIR})
