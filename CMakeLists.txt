@@ -14,17 +14,21 @@ project(image_process VERSION 0.0.1)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
 
-add_library(image_process )
+add_library(image_process)
 
 target_sources(image_process PRIVATE
  src/loader.cpp
  src/bitmaps/bitmap_flat.cpp
+ src/loaders/loader_stb.cpp
 )
 
 find_package(fmt CONFIG REQUIRED)
 target_link_libraries(image_process PRIVATE fmt::fmt)
 find_package(spdlog CONFIG REQUIRED)
 target_link_libraries(image_process PRIVATE spdlog::spdlog)
+
+find_package(Stb REQUIRED)
+target_include_directories(image_process PRIVATE ${Stb_INCLUDE_DIR})
 
 target_include_directories(image_process PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

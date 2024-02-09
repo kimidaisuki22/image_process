@@ -4,7 +4,8 @@
     "version": "0.0.1",
     "dependencies": [
         "fmt",
-        "spdlog"
+        "spdlog",
+        "stb"
     ],
     "features": {
         "benchmark": {
