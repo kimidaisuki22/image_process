@@ -10,34 +10,53 @@ namespace image_process {
 
 std::optional<std::unique_ptr<Bitmap_I>>
 Loader_stb::load(std::span<const uint8_t> buffer) {
-  return {};
+  if (buffer.empty()) {
+    return {};
+  }
+  int x{};
+  int y{};
+  int channel{};
+  auto result = stbi_load_from_memory(buffer.data(), buffer.size_bytes(), &x,
+                                      &y, &channel, target_channel_);
+
+  if (!result) {
+    // failed to load buffer.
+    return {};
+  }
+  Bitmap_flat bitmap{x, y, channel};
+  memcpy(bitmap.data(), result, bitmap.size_bytes());
+  stbi_image_free(result);
+
+  auto ptr = std::make_unique<Bitmap_flat>(std::move(bitmap));
+
+  return ptr;
 }
 std::optional<std::unique_ptr<Bitmap_I>>
 Loader_stb::load_file(const std::string &file_path) {
   auto file_ptr = fopen(file_path.c_str(), "rb");
-    if (!file_ptr) {
-      // failed to open file.
-      return {};
-    }
-    int x{};
-    int y{};
-    int channel{};
+  if (!file_ptr) {
+    // failed to open file.
+    return {};
+  }
+  int x{};
+  int y{};
+  int channel{};
 
-    auto buffer = stbi_load_from_file(file_ptr, &x, &y, &channel, target_channel_);
-    fclose(file_ptr);
+  auto buffer =
+      stbi_load_from_file(file_ptr, &x, &y, &channel, target_channel_);
+  fclose(file_ptr);
 
-    if (!buffer) {
-      // failed to load file.
-      return {};
-    }
-    Bitmap_flat bitmap{x, y, channel};
-    memcpy(bitmap.data(), buffer, bitmap.size_in_bytes());
-    stbi_image_free(buffer);
+  if (!buffer) {
+    // failed to load file.
+    return {};
+  }
+  Bitmap_flat bitmap{x, y, channel};
+  memcpy(bitmap.data(), buffer, bitmap.size_bytes());
+  stbi_image_free(buffer);
 
-    auto ptr = std::make_unique<Bitmap_flat>(std::move(bitmap));
+  auto ptr = std::make_unique<Bitmap_flat>(std::move(bitmap));
 
-    return ptr;
-
+  return ptr;
 }
 std::string Loader_stb::name() const { return "stb"; }
 void Loader_stb::set_target_channel(int channel) { target_channel_ = channel; }

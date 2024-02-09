@@ -10,6 +10,6 @@ const uint8_t *image_process::Bitmap_flat::data() const {
 int image_process::Bitmap_flat::width() const { return size_.width(); }
 int image_process::Bitmap_flat::height() const { return size_.height(); }
 int image_process::Bitmap_flat::channel() const { return channel_; }
-size_t image_process::Bitmap_flat::size_in_bytes() const {
+size_t image_process::Bitmap_flat::size_bytes() const {
   return storage_.size();
 }

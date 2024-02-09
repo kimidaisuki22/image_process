@@ -14,7 +14,7 @@ public:
   int height() const;
   int channel() const;
 
-  size_t size_in_bytes() const;
+  size_t size_bytes() const;
 
 private:
   std::vector<uint8_t> storage_;
