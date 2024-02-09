@@ -3,6 +3,7 @@
 #include "image_process/bitmaps/bitmap.h"
 #include <image_process/loader.h>
 #include <memory>
+#include <vector>
 namespace image_process {
 class Loader_set : public Loader {
 public:

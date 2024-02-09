@@ -1,6 +1,6 @@
 #include "image_process/bitmaps/bitmap_flat.h"
 #include "webp/decode.h"
-#include <_types/_uint8_t.h>
+#include <cstdint>
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
