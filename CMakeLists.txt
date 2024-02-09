@@ -23,6 +23,8 @@ target_sources(image_process PRIVATE
  src/loaders/loader_webp.cpp
  src/exporters/exporter_stb.cpp
  src/exporters/exporter_stb_ico.cpp
+ src/exporters/exporter_webp.cpp
+ src/exporters/exporter_factory.cpp
 )
 
 find_package(fmt CONFIG REQUIRED)
