@@ -70,8 +70,8 @@ include(CMakeFindDependencyMacro)
 find_dependency(Stb)
 find_dependency(WebP)
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/image_process_targets.cmake.in
-               ${CMAKE_CURRENT_BINARY_DIR}/image_process_targets.cmake
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/image_process-config.cmake.in
+               ${CMAKE_CURRENT_BINARY_DIR}/image_process-config.cmake
                @ONLY)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/image_process_targets.cmake
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/image_process-config.cmake
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/image_process)
