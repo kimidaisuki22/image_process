@@ -11,5 +11,7 @@ public:
   virtual int width() const = 0;
   virtual int height() const = 0;
   virtual int channel() const = 0;
+
+  virtual int stride() const = 0;
 };
 }

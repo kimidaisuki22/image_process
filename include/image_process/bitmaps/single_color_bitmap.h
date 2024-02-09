@@ -14,6 +14,7 @@ public:
   int width() const override { return 1; }
   int height() const override { return 1; }
   int channel() const override { return 4; }
+  int stride() const override {return 4; }
 
 private:
   std::array<uint8_t, 4> data_;

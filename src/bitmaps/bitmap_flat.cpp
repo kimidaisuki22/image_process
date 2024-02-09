@@ -13,3 +13,4 @@ int image_process::Bitmap_flat::channel() const { return channel_; }
 size_t image_process::Bitmap_flat::size_bytes() const {
   return storage_.size();
 }
+int image_process::Bitmap_flat::stride() const { return width() * channel(); }
