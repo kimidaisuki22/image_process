@@ -20,6 +20,7 @@ target_sources(image_process PRIVATE
  src/loader.cpp
  src/bitmaps/bitmap_flat.cpp
  src/loaders/loader_stb.cpp
+ src/loaders/loader_webp.cpp
 )
 
 find_package(fmt CONFIG REQUIRED)
@@ -29,6 +30,9 @@ target_link_libraries(image_process PRIVATE spdlog::spdlog)
 
 find_package(Stb REQUIRED)
 target_include_directories(image_process PRIVATE ${Stb_INCLUDE_DIR})
+
+find_package(WebP CONFIG REQUIRED)
+target_link_libraries(image_process PRIVATE WebP::webp WebP::webpdecoder WebP::webpdemux)
 
 target_include_directories(image_process PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
