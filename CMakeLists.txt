@@ -47,11 +47,31 @@ if(WITH_BENCHMARK)
   add_subdirectory(benchmark)
 endif()
 
-install(TARGETS image_process DESTINATION lib)
-
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-set(CPACK_PACKAGE_FILE_NAME update_server_package)
-include(CPack)
 
 include(GNUInstallDirs)
+install(TARGETS image_process
+  EXPORT image_process_targets
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+include(CPack)
+
+install(EXPORT image_process_targets
+    FILE image_process_targets.cmake
+    NAMESPACE image_process::
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/image_process
+)
+
+install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+
+include(CMakeFindDependencyMacro)
+find_dependency(Stb)
+find_dependency(WebP)
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/image_process_targets.cmake.in
+               ${CMAKE_CURRENT_BINARY_DIR}/image_process_targets.cmake
+               @ONLY)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/image_process_targets.cmake
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/image_process)

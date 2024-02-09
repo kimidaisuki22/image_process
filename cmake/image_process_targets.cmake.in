@@ -1,0 +1,8 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+find_dependency(Stb)
+find_dependency(WebP)
+
+include("${CMAKE_CURRENT_LIST_DIR}/image_process_targets.cmake")
