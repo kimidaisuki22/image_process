@@ -50,7 +50,7 @@ endif()
 
 include(GNUInstallDirs)
 install(TARGETS image_process
-  EXPORT image_process_targets
+  EXPORT image-process-targets
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -58,10 +58,10 @@ install(TARGETS image_process
 
 include(CPack)
 
-install(EXPORT image_process_targets
-    FILE image_process_targets.cmake
+install(EXPORT image-process-targets
+    FILE image-process-targets.cmake
     NAMESPACE image_process::
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/image_process
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/image-process
 )
 
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
@@ -70,8 +70,8 @@ include(CMakeFindDependencyMacro)
 find_dependency(Stb)
 find_dependency(WebP)
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/image_process-config.cmake.in
-               ${CMAKE_CURRENT_BINARY_DIR}/image_process-config.cmake
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/image-process-config.cmake.in
+               ${CMAKE_CURRENT_BINARY_DIR}/image-process-config.cmake
                @ONLY)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/image_process-config.cmake
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/image_process)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/image-process-config.cmake
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/image-process)
