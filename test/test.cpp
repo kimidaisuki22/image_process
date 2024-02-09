@@ -1,5 +1,6 @@
 #include "image_process/bitmaps/single_color_bitmap.h"
 #include "image_process/exporters/exporter_factory.h"
+#include "image_process/resize.h"
 #include <filesystem>
 #include <fstream>
 #include <gtest/gtest.h>
@@ -13,7 +14,10 @@ TEST(ImageTest, Write_image) {
     auto file_path = std::filesystem::path(filename).replace_extension(ext);
     auto exporter = image_process::get_exporter_by_name(ext);
     EXPECT_TRUE(exporter) << file_path  <<"\n";
-    auto img = exporter->export_to_buffer(white);
+    auto large_image = image_process::scale_up_to_height(white, 64);
+    ASSERT_TRUE(large_image);
+    ASSERT_TRUE(*large_image);
+    auto img = exporter->export_to_buffer(**large_image);
     EXPECT_TRUE(img);
     EXPECT_TRUE(!img->empty());
 
