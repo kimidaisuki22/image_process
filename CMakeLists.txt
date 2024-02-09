@@ -21,6 +21,8 @@ target_sources(image_process PRIVATE
  src/bitmaps/bitmap_flat.cpp
  src/loaders/loader_stb.cpp
  src/loaders/loader_webp.cpp
+ src/exporters/exporter_stb.cpp
+ src/exporters/exporter_stb_ico.cpp
 )
 
 find_package(fmt CONFIG REQUIRED)
