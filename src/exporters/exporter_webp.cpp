@@ -34,7 +34,7 @@ Exporter_webp::export_to_buffer(const Bitmap_I &bitmap) {
   }
 
   std::vector<uint8_t> buffer_vector{buffer, buffer + buffer_size};
-  free(buffer);
+  WebPFree(buffer);
   return buffer_vector;
 }
 } // namespace image_process
