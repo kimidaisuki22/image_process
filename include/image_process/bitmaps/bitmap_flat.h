@@ -1,5 +1,5 @@
 #pragma once
-#include "image_process/image_size.h"
+#include <image_process/image_size.h>
 #include <cstddef>
 #include <image_process/bitmaps/bitmap.h>
 #include <vector>

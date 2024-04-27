@@ -1,5 +1,7 @@
 #include "image_process/exporters/exporter_stb_ico.h"
+#include "image_process/exporters/exporter_stb.h"
 #include "image_process/image_size.h"
+#include <cassert>
 namespace  {
 struct Icon_dir {
     const uint16_t reserved_{};

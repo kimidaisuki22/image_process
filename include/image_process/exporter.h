@@ -1,5 +1,5 @@
 #pragma once
-#include "image_process/bitmaps/bitmap.h"
+#include <image_process/bitmaps/bitmap.h>
 #include <cstdint>
 #include <optional>
 #include <string>

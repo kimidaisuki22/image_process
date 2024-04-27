@@ -1,6 +1,6 @@
 #pragma once
 
-#include "image_process/bitmaps/bitmap.h"
+#include <image_process/bitmaps/bitmap.h>
 #include <image_process/loader.h>
 #include <memory>
 #include <vector>

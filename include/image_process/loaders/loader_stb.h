@@ -1,8 +1,6 @@
 #pragma once
 
-#include "image_process/loader.h"
-#include <cstdio>
-
+#include <image_process/loader.h>
 
 namespace image_process {
 class Loader_stb : public Loader {

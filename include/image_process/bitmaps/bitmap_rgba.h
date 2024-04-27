@@ -1,7 +1,6 @@
 #pragma once
-#include "image_process/bitmaps/bitmap_flat.h"
+#include <image_process/bitmaps/bitmap_flat.h>
 #include <image_process/bitmaps/bitmap.h>
-#include <vector>
 namespace image_process {
 class Bitmap_RGBA : public Bitmap_flat {
 public:

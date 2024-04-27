@@ -1,5 +1,5 @@
 #pragma once
-#include "image_process/views/color_view.h"
+#include <image_process/views/color_view.h>
 #include <image_process/bitmaps/bitmap.h>
 namespace image_process {
 class Pixel_view {
