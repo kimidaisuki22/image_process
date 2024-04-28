@@ -27,6 +27,8 @@ target_sources(image_process PRIVATE
  src/exporters/exporter_stb_ico.cpp
  src/exporters/exporter_webp.cpp
  src/exporters/exporter_factory.cpp
+
+ src/views/color_view.cpp
 )
 
 

@@ -1,5 +1,7 @@
 #pragma once
+#include "image_process/views/color_view.h"
 #include <cstdint>
+#include <cstring>
 #include <image_process/bitmaps/bitmap.h>
 #include <span>
 namespace image_process {
@@ -19,6 +21,8 @@ private:
 };
 class Const_color_view {
 public:
+  Const_color_view(Color_view view)
+      : Const_color_view(view.as_span().data(), view.channel()) {}
   Const_color_view(const uint8_t *data, int size) : channels_(data, size) {}
   uint8_t operator[](int n) const { return channels_[n]; }
   int channel() const { return channels_.size(); }
@@ -27,4 +31,5 @@ public:
 private:
   std::span<const uint8_t> channels_{};
 };
+bool is_same_color(const Const_color_view &lhs, const Const_color_view &rhs);
 } // namespace image_process

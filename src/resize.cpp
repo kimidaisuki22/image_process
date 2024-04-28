@@ -53,4 +53,21 @@ std::optional<std::unique_ptr<Bitmap_I>> scale_up_to_height(Bitmap_I &bitmap,
   }
   return std::make_unique<Bitmap_flat>(std::move(bitmap_out));
 }
+std::optional<std::unique_ptr<Bitmap_I>>
+resize_to(Bitmap_I &bitmap, int target_width, int target_height) {
+  auto height = bitmap.height();
+  auto width = bitmap.width();
+  auto channel = bitmap.channel();
+
+  Bitmap_flat bitmap_out{target_width, target_height, channel};
+
+  auto ok = stbir_resize_uint8(bitmap.data(), width, height, width * channel,
+                               bitmap_out.data(), target_width, target_height,
+                               bitmap_out.stride(), channel);
+  if (!ok) {
+    //  SPDLOG_ERROR("resize image failed.");
+    return {};
+  }
+  return std::make_unique<Bitmap_flat>(std::move(bitmap_out));
+}
 } // namespace image_process
