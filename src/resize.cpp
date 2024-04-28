@@ -1,15 +1,11 @@
 #include "image_process/bitmaps/bitmap_flat.h"
 // #include "spdlog/spdlog.h"
-#include <cstring>
 #include <image_process/resize.h>
 #include <memory>
-#include <span>
 
 #define STB_IMAGE_RESIZE_IMPLEMENTATION
 #include <stb_image_resize.h>
 
-#include <stdint.h>
-#include <vector>
 namespace image_process {
 std::optional<std::unique_ptr<Bitmap_I>>
 scale_down_to_height(Bitmap_I &bitmap, int target_height) {
