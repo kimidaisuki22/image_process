@@ -31,5 +31,7 @@ public:
 private:
   std::span<const uint8_t> channels_{};
 };
+// should have same channel.
+void assign_color(Color_view dest, Const_color_view src);
 bool is_same_color(const Const_color_view &lhs, const Const_color_view &rhs);
 } // namespace image_process
