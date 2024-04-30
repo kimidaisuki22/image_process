@@ -7,4 +7,4 @@ target_link_libraries(${target} PRIVATE benchmark::benchmark benchmark::benchmar
 
 endfunction()
 
-add_bench(str str.cpp)
+add_bench(bm_image_resize bm_image_resize.cpp)
