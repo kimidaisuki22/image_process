@@ -1,4 +1,3 @@
-#pragma once
 #include "image_process/bitmaps/bitmap_flat.h"
 #include "image_process/views/pixel_view.h"
 #include <cstddef>
