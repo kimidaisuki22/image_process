@@ -20,6 +20,7 @@ target_sources(image_process PRIVATE
  src/loader.cpp
  src/resize.cpp
  src/extract_channel.cpp
+ src/swizzle.cpp
  src/bitmaps/bitmap_flat.cpp
  src/loaders/loader_stb.cpp
  src/loaders/loader_webp.cpp

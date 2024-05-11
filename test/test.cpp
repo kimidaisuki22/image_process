@@ -1,15 +1,19 @@
+#include "image_process/bitmaps/bitmap_flat.h"
 #include "image_process/bitmaps/bitmap_rgba.h"
 #include "image_process/bitmaps/single_color_bitmap.h"
 #include "image_process/exporters/exporter_factory.h"
 #include "image_process/resize.h"
+#include "image_process/swizzle.h"
 #include "image_process/views/color_view.h"
 #include "image_process/views/pixel_view.h"
 #include "image_process/views/pixel_view_clamp.h"
+#include "image_process/views/swizzle_view.h"
 #include <filesystem>
 #include <fstream>
 #include <gtest/gtest.h>
 #include <image_process/exporter.h>
 #include <string>
+#include <vector>
 
 #define EXPECT_EQ_COLOR_VIEW(a, b)                                             \
   EXPECT_EQ(a.as_span().data(), b.as_span().data());                           \
@@ -107,6 +111,31 @@ TEST(ImageTest, resize) {
   for (int i = 0; i < dest.width(); i++) {
     for (int j = 0; j < dest.height(); j++) {
       ASSERT_TRUE(image_process::is_same_color(dest(i, 0), dest(i, j)));
+    }
+  }
+}
+TEST(ImageTest, swizzle) {
+  image_process::Bitmap_flat src{5, 5, 1};
+  image_process::Pixel_view view{&src};
+  for (int i = 0; i < src.size_bytes(); i++) {
+    src.data()[i] = i;
+  }
+  image_process::Swizzler swizzler{
+      std::vector<image_process::Swizzle_item>{{0}, {0}, {0}, {-1, 255}}};
+  auto out = image_process::swizzle_image(src, swizzler);
+  ASSERT_TRUE(out);
+
+  ASSERT_EQ(out->width(), src.width());
+  ASSERT_EQ(out->height(), src.height());
+  ASSERT_EQ(out->channel(), 4);
+
+  auto dest = image_process::Pixel_view{out.get()};
+  for (int i = 0; i < dest.width(); i++) {
+    for (int j = 0; j < dest.height(); j++) {
+      for (int k = 0; k < 3; k++) {
+        ASSERT_EQ(dest(i, j)[k], i + j * dest.width());
+      }
+      ASSERT_EQ(dest(i, j)[3], 255);
     }
   }
 }
