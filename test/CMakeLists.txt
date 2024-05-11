@@ -12,4 +12,4 @@ target_link_libraries(
    GTest::gtest_main
    image_process
 )
-add_test(test_A hello_test)
+add_test(image_test hello_test)
