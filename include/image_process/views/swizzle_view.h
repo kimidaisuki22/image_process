@@ -12,6 +12,8 @@ struct Swizzle_item {
     ch0 = 0,
     // chn = n
   };
+  Swizzle_item(int type = 0, uint8_t target_value = 0)
+      : type_(static_cast<Type>(type)), target_value_(target_value) {}
   Type type_;
 
   uint8_t target_value_{};
