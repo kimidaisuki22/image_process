@@ -22,6 +22,7 @@ target_sources(image_process PRIVATE
  src/extract_channel.cpp
  src/swizzle.cpp
  src/bitmaps/bitmap_flat.cpp
+ src/check/gray.cpp
  src/loaders/loader_stb.cpp
  src/loaders/loader_webp.cpp
  src/exporters/exporter_stb.cpp
