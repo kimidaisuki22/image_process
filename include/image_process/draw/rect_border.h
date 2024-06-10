@@ -6,8 +6,8 @@
 #include <image_process/bitmaps/bitmap.h>
 
 namespace image_process ::draw {
-inline void rect_fill(Bitmap_I &src, Const_color_view color, int x, int y,
-                      int size_x, int size_y) {
+inline void rect_border(Bitmap_I &src, Const_color_view color, int x, int y,
+                        int size_x, int size_y) {
   assert(x >= 0);
   assert(y >= 0);
   assert(x + size_x <= src.width());
@@ -18,7 +18,9 @@ inline void rect_fill(Bitmap_I &src, Const_color_view color, int x, int y,
 
   for (int i = y; i < y + size_y; i++) {
     for (int j = x; j < x + size_x; j++) {
-        assign_color(view(j,i), color);
+      if (i == y || j == x || (i + 1 == y + size_y) || (j + 1 == x + size_x)) {
+        assign_color(view(j, i), color);
+      }
     }
   }
 }

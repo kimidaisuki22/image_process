@@ -5,6 +5,7 @@ if(WITH_BENCHMARK)
   list(APPEND VCPKG_MANIFEST_FEATURES "benchmark")
 endif()
 
+option(BUILD_TESTING "Build tests" OFF)
 if(BUILD_TESTING)
   list(APPEND VCPKG_MANIFEST_FEATURES "test")
 endif()
