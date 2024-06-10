@@ -30,6 +30,8 @@ target_sources(image_process PRIVATE
  src/exporters/exporter_factory.cpp
 
  src/views/color_view.cpp
+
+ src/find/find_same_image.cpp
 )
 
 

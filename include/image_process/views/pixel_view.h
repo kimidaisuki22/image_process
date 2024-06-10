@@ -1,6 +1,7 @@
 #pragma once
-#include <image_process/views/color_view.h>
 #include <image_process/bitmaps/bitmap.h>
+#include <image_process/views/color_view.h>
+
 namespace image_process {
 class Pixel_view {
 public:
@@ -41,7 +42,7 @@ public:
     channel_ = bitmap->channel();
     stride_ = bitmap->stride();
   }
-  Const_color_view operator()(int w, int h) {
+  Const_color_view operator()(int w, int h) const {
     auto ptr = data_ + stride_ * h + channel_ * w;
     Const_color_view view{ptr, channel_};
     return view;
