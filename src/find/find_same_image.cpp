@@ -7,6 +7,17 @@ using namespace image_process;
 bool check_is_same_image(const Const_pixel_view &src,
                          const Const_pixel_view &sub, int total_channel,
                          int x_offset_in_src, int y_offset_in_src) {
+  for (int i = 0; i < sub.height(); i+=21) {
+    for (int j = 0; j < sub.width(); j+=21) {
+      auto src_c = src(x_offset_in_src + j, y_offset_in_src + i);
+      auto sub_c = sub(j, i);
+      for (int k = 0; k < total_channel; k++) {
+        if (src_c[k] != sub_c[k]) {
+          return false;
+        }
+      }
+    }
+  }
   for (int i = 0; i < sub.height(); i++) {
     for (int j = 0; j < sub.width(); j++) {
       auto src_c = src(x_offset_in_src + j, y_offset_in_src + i);
