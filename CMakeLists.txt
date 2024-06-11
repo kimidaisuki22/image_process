@@ -5,6 +5,7 @@ if(WITH_BENCHMARK)
   list(APPEND VCPKG_MANIFEST_FEATURES "benchmark")
 endif()
 
+option(BUILD_TESTING "Build tests" OFF)
 if(BUILD_TESTING)
   list(APPEND VCPKG_MANIFEST_FEATURES "test")
 endif()
@@ -31,6 +32,8 @@ target_sources(image_process PRIVATE
  src/exporters/exporter_factory.cpp
 
  src/views/color_view.cpp
+
+ src/find/find_same_image.cpp
 )
 
 

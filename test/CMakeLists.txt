@@ -2,14 +2,20 @@
 enable_testing()
 find_package(GTest CONFIG REQUIRED)
 
-add_executable(
-  hello_test
-  test.cpp
+function(add_image_test name file)
+  add_executable(
+  ${name}
+  ${file}
 )
 target_link_libraries(
-  hello_test
+  ${name}
   PRIVATE
    GTest::gtest_main
    image_process
 )
-add_test(image_test hello_test)
+add_test(${name} ${name})
+endfunction()
+
+add_image_test(image_test test.cpp)
+
+add_image_test(find_image_test find_sub_test.cpp)
