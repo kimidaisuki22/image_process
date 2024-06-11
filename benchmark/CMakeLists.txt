@@ -9,3 +9,4 @@ endfunction()
 
 add_bench(bm_image_resize bm_image_resize.cpp)
 add_bench(bm_image_find_sub bm_image_find_sub.cpp)
+add_bench(bm_image_gray_check bm_image_gray_check.cpp)

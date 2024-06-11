@@ -19,7 +19,7 @@ TEST(Image_gray_check, rgba) {
     for(int j=0;j<3;j++){
         color_view[j] = i;
     }
-    color_view[3] = 255;
+    color_view[3] = 255; // if alpha is not 255, it not a simple gray scale image.
   }
   EXPECT_TRUE(image_process::check::is_gray_scale(image));
   view.view_in_1d(view.pixel_count() - 1)[0] = 0;
