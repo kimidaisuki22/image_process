@@ -23,6 +23,7 @@ target_sources(image_process PRIVATE
  src/extract_channel.cpp
  src/swizzle.cpp
  src/bitmaps/bitmap_flat.cpp
+ src/check/gray.cpp
  src/loaders/loader_stb.cpp
  src/loaders/loader_webp.cpp
  src/exporters/exporter_stb.cpp
@@ -33,6 +34,8 @@ target_sources(image_process PRIVATE
  src/views/color_view.cpp
 
  src/find/find_same_image.cpp
+
+ src/transform/drop_to_gray_scale.cpp
 )
 
 
