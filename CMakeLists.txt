@@ -34,6 +34,8 @@ target_sources(image_process PRIVATE
  src/views/color_view.cpp
 
  src/find/find_same_image.cpp
+
+ src/transform/drop_to_gray_scale.cpp
 )
 
 
