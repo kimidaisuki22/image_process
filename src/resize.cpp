@@ -4,8 +4,10 @@
 #include <memory>
 
 #define STB_IMAGE_RESIZE_IMPLEMENTATION
-#include <stb_image_resize.h>
-
+#include <stb_image_resize2.h>
+static stbir_pixel_layout channel_to_layout(int channel) {
+  return static_cast<stbir_pixel_layout>(channel);
+}
 namespace image_process {
 std::optional<std::unique_ptr<Bitmap_I>>
 scale_down_to_height(Bitmap_I &bitmap, int target_height) {
@@ -21,9 +23,10 @@ scale_down_to_height(Bitmap_I &bitmap, int target_height) {
   int output_width = radio * width, output_height = height * radio;
   Bitmap_flat bitmap_out{output_width, output_height, channel};
 
-  auto ok = stbir_resize_uint8(bitmap.data(), width, height, width * channel,
-                               bitmap_out.data(), output_width, output_height,
-                               bitmap_out.stride(), channel);
+  auto ok = stbir_resize_uint8_linear(
+      bitmap.data(), width, height, width * channel, bitmap_out.data(),
+      output_width, output_height, bitmap_out.stride(),
+      channel_to_layout(channel));
   if (!ok) {
     //  SPDLOG_ERROR("resize image failed.");
     return {};
@@ -44,9 +47,10 @@ std::optional<std::unique_ptr<Bitmap_I>> scale_up_to_height(Bitmap_I &bitmap,
   int output_width = radio * width, output_height = height * radio;
   Bitmap_flat bitmap_out{output_width, output_height, channel};
 
-  auto ok = stbir_resize_uint8(bitmap.data(), width, height, width * channel,
-                               bitmap_out.data(), output_width, output_height,
-                               bitmap_out.stride(), channel);
+  auto ok = stbir_resize_uint8_linear(
+      bitmap.data(), width, height, width * channel, bitmap_out.data(),
+      output_width, output_height, bitmap_out.stride(),
+      channel_to_layout(channel));
   if (!ok) {
     //  SPDLOG_ERROR("resize image failed.");
     return {};
@@ -61,9 +65,10 @@ resize_to(Bitmap_I &bitmap, int target_width, int target_height) {
 
   Bitmap_flat bitmap_out{target_width, target_height, channel};
 
-  auto ok = stbir_resize_uint8(bitmap.data(), width, height, width * channel,
-                               bitmap_out.data(), target_width, target_height,
-                               bitmap_out.stride(), channel);
+  auto ok = stbir_resize_uint8_linear(
+      bitmap.data(), width, height, width * channel, bitmap_out.data(),
+      target_width, target_height, bitmap_out.stride(),
+      channel_to_layout(channel));
   if (!ok) {
     //  SPDLOG_ERROR("resize image failed.");
     return {};
